@@ -59,33 +59,33 @@ export default function Task() {
         //make a copy of te ucrrent activity
         //Append that to the list
         //increment the id counter
-        
+
         console.log(data)
         await fetch('http://localhost:5000/',
-                {
-                    method:'POST',
-                    body: JSON.stringify( { 
-                        template_id: data.form_id,
-                        template_title: data.form_title,
-                        template_owner_id: uuid(),
-                        template_nodes: data.formNodes.map((formNode, i) => {
-                            return {
-                                node_id: formNode.form_node_id,
-                                node_title: formNode.title,
-                                node_description: formNode.description,
-                                node_type: formNode.type,
-                                template_id: data.form_id,
-                            }
-                            
-                        }),
-                        template_created_at: new Date(),
-                     }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    template_id: data.form_id,
+                    template_title: data.form_title,
+                    template_owner_id: uuid(),
+                    template_nodes: data.formNodes.map((formNode, i) => {
+                        return {
+                            node_id: formNode.form_node_id,
+                            node_title: formNode.title,
+                            node_description: formNode.description,
+                            node_type: formNode.type,
+                            template_id: data.form_id,
+                        }
+
+                    }),
+                    template_created_at: new Date(),
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-               
-                );
+            }
+
+        );
     }
 
     const modules = {
@@ -136,15 +136,15 @@ export default function Task() {
                                 modules={modules}
                             />
                             <div className="absolute top-3 right-3">
-                            <Button type="button" className="" variant="outlined" onClick={() => remove(index)}>
-                                <div className="flex flex-row items-center space-x-4">
-                                    Delete Form Node
-                                    <HighlightOffIcon className="h-5 w-5" />
-                                </div>
+                                <Button type="button" className="" variant="outlined" onClick={() => remove(index)}>
+                                    <div className="flex flex-row items-center space-x-4">
+                                        Delete Form Node
+                                        <HighlightOffIcon className="h-5 w-5" />
+                                    </div>
 
-                            </Button>
+                                </Button>
                             </div>
-                            
+
                         </div>)
                     }
                     <div className="flex flex-row items-center justify-start space-x-2">
